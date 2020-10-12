@@ -1,0 +1,64 @@
+{% set version = "3.1.0" %}
+
+package:
+  name: bazel
+  version: {{ version }}
+
+source:
+  url: https://github.com/bazelbuild/bazel/releases/download/{{ version }}/bazel-{{ version }}-dist.zip
+  sha256: d7f40d0cac95a06cea6cb5b7f7769085257caebc3ee84269dd9298da760d5615
+  patches:
+    - 0001-allow-args-to-be-passed-to-bazel_build.patch
+
+build:
+  number: 0
+  ignore_prefix_files: true
+  binary_relocation: false
+  skip: true  # [win and vc<14]
+  # libstdc++: statically linked
+  ignore_run_exports:   # [not osx]
+    - libstdcxx-ng  # [not osx]
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+  host:
+    - openjdk >=8
+    - unzip  # [linux]
+    - zip  # [linux]
+    - posix  # [win]
+  run:
+    - openjdk >=8
+    - posix  # [win]
+
+test:
+  requires:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+  commands:
+    - bazel -h
+    - bazel version
+    # libstdc++ should not be included in this listing as it is statically linked
+    - readelf -d $PREFIX/bin/bazel  # [linux]
+
+about:
+  home: https://www.bazel.io/
+  summary: build system originally authored by Google
+  description: |
+    Bazel is Google's own build tool, now publicly available in Beta. Bazel has
+    built-in support for building both client and server software, including
+    client applications for both Android and iOS platforms. It also provides an
+    extensible framework that you can use to develop your own build rules.
+  dev_url: https://github.com/bazelbuild/bazel
+  doc_url: https://www.bazel.io/versions/master/docs/install.html
+  license: Apache-2.0
+  license_family: Apache
+  license_file: LICENSE
+
+extra:
+  recipe-maintainers:
+    - jjhelmus
+    - nehaljwani
+    - abhi18av
+    - jschueller
