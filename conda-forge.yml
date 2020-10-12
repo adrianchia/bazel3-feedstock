@@ -1,1 +1,21 @@
-{}
+azure:
+  # toggle for storing the conda build_artifacts directory (including the
+  # built packages) as an Azure pipeline artifact that can be downloaded
+  store_build_artifacts: True
+channels:
+  # sources select the channel to pull packages from, in order.
+  sources:
+    - adrianchia
+    - conda-forge
+    - defaults
+  # target is a list of 2-lists, where the first element is the 
+  # channel to push to and the second element is the label on that channel
+  targets:
+    - ["adrianchia", "test"]
+github:
+  # name of the github organization
+  user_or_org: adrianchia
+  # repository name, usually filled in automatically
+  repo_name: "bazel3-feedstock"
+  # branch name to execute_on
+  branch_name: master
