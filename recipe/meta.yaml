@@ -8,7 +8,7 @@ source:
   url: https://github.com/bazelbuild/bazel/releases/download/{{ version }}/bazel-{{ version }}-dist.zip
   sha256: d7f40d0cac95a06cea6cb5b7f7769085257caebc3ee84269dd9298da760d5615
   patches:
-    - 0001-allow-args-to-be-passed-to-bazel_build.patch
+    - 0001-allow-args-to-be-passed-to-bazel_build.patch  # [unix]
 
 build:
   number: 0
@@ -23,6 +23,8 @@ requirements:
   build:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
+    - patch  # [unix]
+    - python >=3
   host:
     - openjdk >=8
     - unzip  # [linux]
