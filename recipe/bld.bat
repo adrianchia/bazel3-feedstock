@@ -28,7 +28,8 @@ set MSYS2_PATH_TYPE=inherit
 :: set "BAZEL_VC=%VSINSTALLDIR%VC"
 set "BAZEL_VS=%VSINSTALLDIR%"
 set EXTRA_BAZEL_ARGS="--host_javabase=@local_jdk//:jdk"
-bash -lc "%SRC_DIR%"/compile.sh
+::bash -lc "%SRC_DIR%"/compile.sh
+bash -lc compile.sh
 if errorlevel 1 exit 1
 
 copy %saved_source_dir%\output\bazel.exe %LIBRARY_BIN%\
