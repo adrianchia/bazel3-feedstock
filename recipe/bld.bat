@@ -21,6 +21,7 @@ FOR /F "delims=" %%i IN ('cygpath.exe -u "%PREFIX%"') DO set "JAVA_HOME=%%i/Libr
 
 :: Need a very short TMPDIR otherwise we hit the max path limit while compiling bazel
 FOR /F "delims=" %%i IN ('cygpath.exe -u "%SYSTEMDRIVE%\t"') DO set "TMPDIR=%%i"
+FOR /F "delims=" %%i IN ('cygpath.exe -u "%SYSTEMDRIVE%\t"') DO set "TEMP=%%i"
 
 set MSYSTEM=MINGW%ARCH%
 set MSYS2_PATH_TYPE=inherit
