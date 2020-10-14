@@ -7,4 +7,4 @@ set BAZEL_BUILD_OPTS=""
 set "EXTRA_BAZEL_ARGS=--host_javabase=@local_jdk//:jdk"
 set "BAZEL_VS=%VSINSTALLDIR%"
 
-bazel build "%{BAZEL_BUILD_OPTS%" //main:hello-world
+bazel build //main:hello-world
