@@ -9,6 +9,7 @@ source:
   sha256: 63873623917c756d1be49ff4d5fc23049736180e6b9a7d5236c6f204eddae3cc
   patches:
     - 0001-allow-args-to-be-passed-to-bazel_build.patch  # [unix]
+    - 0002-apply-lrt-to-3.7.0-linux.patch  # [linux]
 
 build:
   number: 0
